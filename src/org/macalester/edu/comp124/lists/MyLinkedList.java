@@ -29,8 +29,12 @@ public class MyLinkedList<E> {
      * @return
      */
 	public E get(int index) {
-		return null;
-	}
+        MyLinkedNode<E> next = head;
+        for (int i = 0; i <= index; i++) {
+                next = next.getNext();
+        }
+        return next.getValue();
+    }
 
     /**
      * Adds a new element to the end of the list:
@@ -38,7 +42,11 @@ public class MyLinkedList<E> {
      * @param elem
      */
 	public void add(E elem) {
-	}
+        MyLinkedNode<E> last = new MyLinkedNode<E>(elem);
+        tail.getPrev().setNext(last);
+        tail.setPrev(last);
+        numElements++;
+    }
 
     /**
      * Inserts a new element at the specified index.
@@ -46,6 +54,14 @@ public class MyLinkedList<E> {
      * @param elem
      */
 	public void add(int i, E elem) {
+        MyLinkedNode<E> newNode = new MyLinkedNode<E>(elem);
+        MyLinkedNode<E> next = head;
+        for (int x = 0; x <= i; x++) {
+            next = next.getNext();
+        }
+        next.getPrev().setNext(newNode);
+        next.setPrev(newNode);
+        numElements++;
 	}
 
     /**
